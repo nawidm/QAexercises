@@ -5,8 +5,8 @@ public class Book extends ReadingMaterial {
 	String author;
 	String genre;
 	
-	public Book(String name, int numberOfPages, String author, String genre) {
-		super(name, numberOfPages);
+	public Book(String name, String author, String genre) {
+		super(name);
 		this.author = author;
 		this.genre = genre;
 	}

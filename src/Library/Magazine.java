@@ -5,8 +5,8 @@ public class Magazine extends ReadingMaterial implements AdRevenue{
 	int numOfAds;
 	boolean isGlossy;
 
-	public Magazine(String name, int numberOfPages, int numOfAds, boolean isGlossy) {
-		super(name, numberOfPages);
+	public Magazine(String name, int numOfAds, boolean isGlossy) {
+		super(name);
 		this.numOfAds = numOfAds;
 		this.isGlossy = isGlossy;
 	}

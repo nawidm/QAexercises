@@ -2,14 +2,17 @@ package Library;
 
 public abstract class ReadingMaterial {
 	
+	static int count = 0;
+	
+	int id;
 	String name;
-	int numberOfPages;
 	int numberOfReads;
 	
-	public ReadingMaterial(String name, int numberOfPages) {
+	
+	public ReadingMaterial(String name) {
 		this.name = name;
-		this.numberOfPages = numberOfPages;
 		numberOfReads = 0;
+		id = ++count;
 	}
 
 	public String read() {
@@ -17,12 +20,20 @@ public abstract class ReadingMaterial {
 		return name+" has been read "+this.numberOfReads+" times.";
 	}
 	
-	public int getNumberOfPages() {
-		return numberOfPages;
+	public int getId() {
+		return id;
 	}
 
-	public void setNumberOfPages(int numberOfPages) {
-		this.numberOfPages = numberOfPages;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getNumberOfReads() {
+		return numberOfReads;
+	}
+
+	public void setNumberOfReads(int numberOfReads) {
+		this.numberOfReads = numberOfReads;
 	}
 
 	public String getName() {

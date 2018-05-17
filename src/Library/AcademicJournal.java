@@ -5,8 +5,8 @@ public class AcademicJournal extends ReadingMaterial{
 	String author;
 	String topic;
 	
-	public AcademicJournal(String name, int numberOfPages, String author, String topic) {
-		super(name, numberOfPages);
+	public AcademicJournal(String name, String author, String topic) {
+		super(name);
 		this.author = author;
 		this.topic = topic;
 	}

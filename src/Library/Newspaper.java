@@ -5,8 +5,8 @@ public class Newspaper extends ReadingMaterial implements AdRevenue{
 	int numOfAds;
 	boolean isBroadsheet;
 	
-	public Newspaper(String name, int numberOfPages, int numOfAds, boolean isBroadsheet) {
-		super(name, numberOfPages);
+	public Newspaper(String name, int numOfAds, boolean isBroadsheet) {
+		super(name);
 		this.numOfAds = numOfAds;
 		this.isBroadsheet = isBroadsheet;
 	}
