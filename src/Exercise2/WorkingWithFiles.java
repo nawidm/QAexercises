@@ -47,6 +47,7 @@ public class WorkingWithFiles {
 				Person p = new Person(inputs[i],Integer.parseInt(inputs[i+1]),inputs[i+2]);
 				list.add(p);
 			}
+			br.close();
 		} catch(Exception e) {
 			
 		}

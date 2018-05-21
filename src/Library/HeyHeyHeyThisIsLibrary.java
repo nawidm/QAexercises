@@ -2,25 +2,25 @@ package Library;
 
 import java.util.ArrayList;
 
-public class Library {
+public class HeyHeyHeyThisIsLibrary {
 	
 	ArrayList<ReadingMaterial> inStock;
 	ArrayList<ReadingMaterial> checkedOut;
 	ArrayList<Person> members;
-	ArrayList<Integer> memberCheckOut;
+	ArrayList<Integer> whichMemberCheckOut;
 	
-	public Library() {
+	public HeyHeyHeyThisIsLibrary() {
 		this.inStock = new ArrayList<ReadingMaterial>();
 		this.checkedOut = new ArrayList<ReadingMaterial>();
 		this.members = new ArrayList<Person>();
-		this.memberCheckOut = new ArrayList<Integer>();
+		this.whichMemberCheckOut = new ArrayList<Integer>();
 	}
 	
 	public boolean checkOutItem(int id, int personId) {
 		
 		for(ReadingMaterial r : inStock) {
 			if(r.getId() == id) {	
-				this.memberCheckOut.add(personId);
+				this.whichMemberCheckOut.add(personId);
 				this.checkedOut.add(r);
 				this.inStock.remove(r);
 				return true;
@@ -34,7 +34,7 @@ public class Library {
 		for(ReadingMaterial r : checkedOut) {
 			if(r.getId() == id) {	
 				this.inStock.add(r);
-				this.memberCheckOut.remove(this.checkedOut.indexOf(r));
+				this.whichMemberCheckOut.remove(this.checkedOut.indexOf(r));
 				this.checkedOut.remove(r);
 				
 				return true;
@@ -95,7 +95,7 @@ public class Library {
 	
 	public boolean deletePerson(int personId) {
 		for(Person p : members) {
-			if(p.getId() == personId && !memberCheckOut.contains(personId)) {
+			if(p.getId() == personId && !whichMemberCheckOut.contains(personId)) {
 				members.remove(p);
 				return true;
 			} else if(p.getId() == personId) {
@@ -152,12 +152,36 @@ public class Library {
 	}
 
 	public ArrayList<Integer> getMemberCheckOut() {
-		return memberCheckOut;
+		return whichMemberCheckOut;
 	}
 
 	public void setMemberCheckOut(ArrayList<Integer> memberCheckOut) {
-		this.memberCheckOut = memberCheckOut;
+		this.whichMemberCheckOut = memberCheckOut;
 	}
 	
-	
+	public String toString() {
+		String output = "";
+		output += "All books currently in the library\n";
+		for(ReadingMaterial r : inStock) {
+			output += r.getId()+" "+r.getName()+"\n";
+		}
+		output += "\nAll books currently checkout out\n";
+		for(ReadingMaterial r : checkedOut) {
+			int idOfMember = whichMemberCheckOut.get(checkedOut.indexOf(r));
+			Person p1; 
+			for(Person p : members) {
+				if(p.getId() == idOfMember) {
+					p1 = p;
+					output += r.getId()+" "+r.getName()+" checked out by ID: "+idOfMember+" Name: "+p1.getName()+"\n";
+					break;
+				}
+			}
+		}
+		output += "\nAll current members\n";
+		for(Person p : members) {
+			output += p.getId()+" "+p.getName();
+		}
+		return output;
+		
+	}
 }
