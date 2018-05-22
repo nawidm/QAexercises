@@ -1,0 +1,13 @@
+All books currently in the library
+itemID: 1 | itemName: harry potter
+itemID: 3 | itemName: hobbit
+itemID: 4 | itemName: Goosebumps
+itemID: 5 | itemName: sdfgf
+itemID: 6 | itemName: sdfg
+itemID: 7 | itemName: jyugh
+
+All books currently checkout out
+itemID: 2 | itemName: the very hungry caterpillar     checked out by     memberID: 1 | memberName: Nawid
+
+All current members
+memberID: 1 | memberName: Nawid

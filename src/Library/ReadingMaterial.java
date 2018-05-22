@@ -2,11 +2,11 @@ package Library;
 
 public abstract class ReadingMaterial {
 	
-	static int count = 0;
+	private static int count = 0;
 	
-	int id;
-	String name;
-	int numberOfReads;
+	private int id;
+	private String name;
+	private int numberOfReads;
 	
 	
 	public ReadingMaterial(String name) {

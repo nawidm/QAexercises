@@ -12,8 +12,8 @@ public class AcademicJournal extends ReadingMaterial{
 	}
 
 	public String read() {
-		this.numberOfReads++;
-		return name+" has supposedly been read "+this.numberOfReads+" times (Thats a lie, nobody reads this stuff)";
+		setNumberOfReads(getNumberOfReads()+1);
+		return getName()+" has supposedly been read "+getNumberOfReads()+" times (Thats a lie, nobody reads this stuff)";
 	}
 	
 	public String getAuthor() {

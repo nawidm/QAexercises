@@ -1,13 +1,17 @@
 package Library;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class HeyHeyHeyThisIsLibrary {
 	
-	ArrayList<ReadingMaterial> inStock;
-	ArrayList<ReadingMaterial> checkedOut;
-	ArrayList<Person> members;
-	ArrayList<Integer> whichMemberCheckOut;
+	private ArrayList<ReadingMaterial> inStock;
+	private ArrayList<ReadingMaterial> checkedOut;
+	private ArrayList<Person> members;
+	private ArrayList<Integer> whichMemberCheckOut;
 	
 	public HeyHeyHeyThisIsLibrary() {
 		this.inStock = new ArrayList<ReadingMaterial>();
@@ -126,6 +130,77 @@ public class HeyHeyHeyThisIsLibrary {
 		}
 		return false;
 	}
+	
+	public void outputToFile() {
+		try
+		{
+			//File f = new File("LibContents.txt");
+			BufferedWriter bw = new BufferedWriter(new FileWriter("LibContents.txt"));
+			bw.write("All books currently in the library"); ;
+			bw.newLine();
+			for(ReadingMaterial r : inStock) {
+				bw.write("itemID: "+r.getId()+" | itemName: "+r.getName());
+				bw.newLine();
+			}
+			bw.newLine();
+			bw.write("All books currently checkout out");
+			bw.newLine();
+			for(ReadingMaterial r : checkedOut) {
+				int idOfMember = whichMemberCheckOut.get(checkedOut.indexOf(r));
+				Person p1; 
+				for(Person p : members) {
+					if(p.getId() == idOfMember) {
+						p1 = p;
+						bw.write("itemID: "+r.getId()+" | itemName: "+r.getName()+"     checked out by     memberID: "+idOfMember+" | memberName: "+p1.getName());
+						bw.newLine();
+						break;
+					}
+				}
+			}
+			bw.newLine();
+			bw.write("All current members"); 
+			bw.newLine();
+			for(Person p : members) {
+				bw.write("memberID: "+p.getId()+" | memberName: "+p.getName()); 
+				bw.newLine();
+			}
+			bw.close();
+		} catch (Exception e) {
+			System.out.println();
+		}
+	}
+	
+	public void inputFromFile(String fileName) {
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			String line = "";
+			while((line = br.readLine()) != null) {
+				ReadingMaterial item;
+				String[] linePieces = line.split(" ");
+				if(linePieces[0].equals("Book")) {
+					item = new Book(linePieces[1],linePieces[2],linePieces[3]);
+					addItem(item);
+				} else if(linePieces[0].equals("Newspaper")) {
+					item = new Newspaper(linePieces[1],Integer.parseInt(linePieces[2]),Boolean.parseBoolean(linePieces[3]));
+					addItem(item);
+
+				} else if(linePieces[0].equals("Magazine")) {
+					item = new Magazine(linePieces[1],Integer.parseInt(linePieces[2]),Boolean.parseBoolean(linePieces[3]));
+					addItem(item);
+
+				} else if(linePieces[0].equals("AcademicJournal")) {
+					item = new AcademicJournal(linePieces[1],linePieces[2],linePieces[3]);
+					addItem(item);
+				} 
+			}
+			
+			br.close();
+		} catch(Exception e) {
+			
+		}
+		
+	}
 
 	public ArrayList<ReadingMaterial> getInStock() {
 		return inStock;
@@ -150,7 +225,7 @@ public class HeyHeyHeyThisIsLibrary {
 	public void setMembers(ArrayList<Person> members) {
 		this.members = members;
 	}
-
+ 
 	public ArrayList<Integer> getMemberCheckOut() {
 		return whichMemberCheckOut;
 	}
